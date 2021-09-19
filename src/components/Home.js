@@ -7,6 +7,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../config';
 import Hero from './Hero';
 import Grid from './Grid';
 import Thumb from './Thumb';
+import Spinner from './Spinner';
 
 // hooks
 import { useHomeFetch } from '../hooks/useHomeFetch';
@@ -35,12 +36,13 @@ const Home = () => {
               movie.poster_path
                 ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
                 : noImage
-            }
+            } 
             clickable
             movieId={movie.id}
           />
         ))}
       </Grid>
+      <Spinner />
     </>
   );
 };
