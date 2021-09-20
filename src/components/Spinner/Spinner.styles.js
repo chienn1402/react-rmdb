@@ -7,7 +7,7 @@ export const Spinner = styled.div`
   border: 5px solid var(--lightGrey);
   border-top: 5px solid var(--darkGrey);
   animation: spinner 0.8s linear infinite;
-  margin: 20px auto;
+  margin: 0 auto 20px;
 
   @keyframes spinner {
     from {

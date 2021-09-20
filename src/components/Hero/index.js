@@ -1,5 +1,5 @@
 import React from 'react';
-
+// styles
 import { Wrapper, Content, Text } from './Hero.styles';
 
 const Hero = ({ image, title, overview }) => {

@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-
-// images
-import SearchIcon from '../../images/search-icon.svg';
-
 // styles
 import { Wrapper, Content } from './SearchBar.styles';
+// images
+import SearchIcon from '../../images/search-icon.svg';
 
 const SearchBar = ({ setSearchTerm }) => {
   const [state, setState] = useState('');

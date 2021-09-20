@@ -1,8 +1,6 @@
 import React from 'react';
-
 // configs
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../config';
-
 // components
 import Hero from './Hero';
 import Grid from './Grid';
@@ -10,10 +8,8 @@ import Thumb from './Thumb';
 import Spinner from './Spinner';
 import SearchBar from './SearchBar';
 import Button from './Button';
-
-// hooks
+// hook
 import { useHomeFetch } from '../hooks/useHomeFetch';
-
 // images
 import noImage from '../images/no_image.jpg';
 
