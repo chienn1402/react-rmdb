@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 // helpers
-import { calcTime, convertMoney } from "../../helpers";
+import { calcTime, convertMoney } from '../../helpers';
 // styles
 import { Wrapper, Content } from './MovieInfoBar.styles';
 
@@ -14,6 +15,12 @@ const MovieInfoBar = ({ runtime, budget, revenue }) => {
       </Content>
     </Wrapper>
   );
+};
+
+MovieInfoBar.propTypes = {
+  runtime: PropTypes.number,
+  budget: PropTypes.number,
+  revenue: PropTypes.number,
 };
 
 export default MovieInfoBar;
