@@ -16,9 +16,14 @@ export const Content = styled.div`
   align-items: center;
   padding: 20px 0;
 
+  a {
+    text-decoration: none;
+  }
+
   span {
     color: var(--white);
     font-size: var(--mediumFont);
+    margin: 0 5px;
 
     @media screen and (min-width: 576px) {
       font-size: var(--largeFont);
