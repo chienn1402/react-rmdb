@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
 // styles
-import { Wrapper, Content } from './SearchBar.styles';
+import { Wrapper, Content } from './styles';
 // images
 import SearchIcon from '../../images/search-icon.svg';
 
-const SearchBar = ({ setSearchTerm }) => {
+type Props = {
+  setSearchTerm: (state: string) => void;
+};
+
+const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
   const [state, setState] = useState('');
   const initial = useRef(true);
 
@@ -35,10 +38,6 @@ const SearchBar = ({ setSearchTerm }) => {
       </Content>
     </Wrapper>
   );
-};
-
-SearchBar.propTypes = {
-  setSearchTerm: PropTypes.func,
 };
 
 export default SearchBar;

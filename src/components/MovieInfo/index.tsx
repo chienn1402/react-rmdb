@@ -1,15 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 // configs
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
+import { Movie } from '../../api';
 // styles
-import { Wrapper, Content, Text } from './MovieInfo.styles';
+import { Wrapper, Content, Text } from './styles';
 // components
 import Thumb from '../Thumb';
 // images
 import noImage from '../../images/no_image.jpg';
 
-const MovieInfo = ({ movie }) => {
+type Props = {
+  movie: Movie;
+};
+
+const MovieInfo: React.FC<Props> = ({ movie }) => {
   return (
     <Wrapper backdrop={movie.backdrop_path}>
       <Content>
@@ -41,10 +45,6 @@ const MovieInfo = ({ movie }) => {
       </Content>
     </Wrapper>
   );
-};
-
-MovieInfo.propTypes = {
-  movie: PropTypes.object,
 };
 
 export default MovieInfo;

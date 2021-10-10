@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config';
 
-export const Wrapper = styled.div`
-  background: ${({backdrop}) => backdrop ? `url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop})` : '#000'};
+type WrapperProps = {
+  backdrop: string;
+}
+
+export const Wrapper = styled.div<WrapperProps>`
+  background: ${({ backdrop }) =>
+    backdrop ? `url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop})` : '#000'};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -26,7 +31,7 @@ export const Content = styled.div`
   max-width: var(--maxWidth);
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 20px;
-  
+
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }

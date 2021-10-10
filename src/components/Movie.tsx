@@ -14,16 +14,16 @@ import { useMovieFetch } from '../hooks/useMovieFetch';
 // images
 import noImage from '../images/no_image.jpg';
 
-const Movie = () => {
+const Movie: React.FC = () => {
   const { movieId } = useParams();
-  const { state: movie, loading, error } = useMovieFetch(movieId);
+  const { state: movie, loading, error } = useMovieFetch(Number(movieId));
 
   if (loading) return <Spinner />;
   if (error) return <h1>Oops! Something went wrong ...</h1>;
 
   return (
     <>
-      <BreadCrumb movieTitle={movie.original_title} />
+      <BreadCrumb movieTitle={movie.title} />
       <MovieInfo movie={movie} />
       <MovieInfoBar
         runtime={movie.runtime}

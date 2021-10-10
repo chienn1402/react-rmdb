@@ -1,11 +1,11 @@
 // Convert time to hours and minutes
-export const calcTime = (time) => {
+export const calcTime = (time: number): string => {
   const hours = Math.floor(time / 60);
   const mins = time % 60;
   return `${hours}h ${mins}m`;
 };
 // Convert a number to money formatting
-export const convertMoney = (money) => {
+export const convertMoney = (money: number): string => {
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -14,7 +14,7 @@ export const convertMoney = (money) => {
   return formatter.format(money);
 };
 // Get state from sessionStorage
-export const isPersistedState = (stateName) => {
+export const isPersistedState = (stateName: string): any => {
   const sessionState = sessionStorage.getItem(stateName);
   return sessionState && JSON.parse(sessionState);
 };

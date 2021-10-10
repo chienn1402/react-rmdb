@@ -1,11 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 // helpers
 import { calcTime, convertMoney } from '../../helpers';
 // styles
-import { Wrapper, Content } from './MovieInfoBar.styles';
+import { Wrapper, Content } from './styles';
 
-const MovieInfoBar = ({ runtime, budget, revenue }) => {
+type Props = {
+  runtime: number;
+  budget: number;
+  revenue: number;
+};
+
+const MovieInfoBar: React.FC<Props> = ({ runtime, budget, revenue }) => {
   return (
     <Wrapper>
       <Content>
@@ -15,12 +20,6 @@ const MovieInfoBar = ({ runtime, budget, revenue }) => {
       </Content>
     </Wrapper>
   );
-};
-
-MovieInfoBar.propTypes = {
-  runtime: PropTypes.number,
-  budget: PropTypes.number,
-  revenue: PropTypes.number,
 };
 
 export default MovieInfoBar;

@@ -1,7 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  background: url(${({image}) => image});
+type WrapperProps = {
+  image: string;
+};
+
+export const Wrapper = styled.div<WrapperProps>`
+  background: url(${({ image }) => image});
   background-size: cover;
   background-position: center;
   height: 600px;

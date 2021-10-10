@@ -5,28 +5,69 @@ import {
   API_KEY,
   REQUEST_TOKEN_URL,
   LOGIN_URL,
-  SESSION_ID_URL
+  SESSION_ID_URL,
 } from './config';
 
 const defaultConfig = {
   method: 'POST',
   headers: {
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+  },
+};
+
+export type Crew = {
+  credit_id: string;
+  job: string;
+  name: string;
+};
+
+export type Cast = {
+  credit_id: string;
+  name: string;
+  character: string;
+  profile_path: string;
+};
+
+export type Movie = {
+  id: number;
+  title: string;
+  original_title: string;
+  overview: string;
+  backdrop_path: string;
+  poster_path: string;
+  directors: Crew[];
+  actors: Cast[];
+  runtime: number;
+  budget: number;
+  revenue: number;
+  vote_average: number;
+};
+
+export type Movies = {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
+};
+
+export type Credits = {
+  id: number;
+  crew: Crew[];
+  cast: Cast[];
 };
 
 const apiSettings = {
-  fetchMovies: async (searchTerm, page) => {
+  fetchMovies: async (searchTerm: string, page: number): Promise<Movies> => {
     const endpoint = searchTerm
       ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
       : `${POPULAR_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchMovie: async movieId => {
+  fetchMovie: async (movieId: number): Promise<Movie> => {
     const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchCredits: async movieId => {
+  fetchCredits: async (movieId: number): Promise<Credits> => {
     const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
     return await (await fetch(creditsEndpoint)).json();
   },
@@ -35,17 +76,21 @@ const apiSettings = {
     const reqToken = await (await fetch(REQUEST_TOKEN_URL)).json();
     return reqToken.request_token;
   },
-  authenticate: async (requestToken, username, password) => {
+  authenticate: async (
+    requestToken: string,
+    username: string,
+    password: string
+  ) => {
     const bodyData = {
       username,
       password,
-      request_token: requestToken
+      request_token: requestToken,
     };
     // First authenticate the requestToken
     const data = await (
       await fetch(LOGIN_URL, {
         ...defaultConfig,
-        body: JSON.stringify(bodyData)
+        body: JSON.stringify(bodyData),
       })
     ).json();
     // Then get the sessionId with the requestToken
@@ -53,24 +98,24 @@ const apiSettings = {
       const sessionId = await (
         await fetch(SESSION_ID_URL, {
           ...defaultConfig,
-          body: JSON.stringify({ request_token: requestToken })
+          body: JSON.stringify({ request_token: requestToken }),
         })
       ).json();
       return sessionId;
     }
   },
-  rateMovie: async (sessionId, movieId, value) => {
+  rateMovie: async (sessionId: string, movieId: number, value: number) => {
     const endpoint = `${API_URL}movie/${movieId}/rating?api_key=${API_KEY}&session_id=${sessionId}`;
 
     const rating = await (
       await fetch(endpoint, {
         ...defaultConfig,
-        body: JSON.stringify({ value })
+        body: JSON.stringify({ value }),
       })
     ).json();
 
     return rating;
-  }
+  },
 };
 
 export default apiSettings;
