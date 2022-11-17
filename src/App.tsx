@@ -8,16 +8,21 @@ import NotFound from './components/NotFound';
 // styles
 import { GlobalStyle } from './GlobalStyle';
 
-const App: React.FC = () => (
-  <Router>
-    <Header />
+const App: React.FC = () => {
+  console.log((window as any).Selenium);
+  console.log(localStorage.getItem('auth0Selenium_dev'));
+
+  return (
+    <Router>
+      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/:movieId" element={<Movie />} />
-        <Route path="/*" element={<NotFound />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/:movieId' element={<Movie />} />
+        <Route path='/*' element={<NotFound />} />
       </Routes>
-    <GlobalStyle />
-  </Router>
-);
+      <GlobalStyle />
+    </Router>
+  );
+};
 
 export default App;
